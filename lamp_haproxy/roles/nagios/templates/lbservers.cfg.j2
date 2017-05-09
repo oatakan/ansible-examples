@@ -17,6 +17,6 @@ define service {
 	use				local-service
 	host_name			{{ host }}
 	service_description		HAProxy Load Balancer
-	check_command			check_http!-p{{ hostvars[host].listenport }}
+	check_command			check_http!-p{{ listenport }}
 }
 {% endfor %}
