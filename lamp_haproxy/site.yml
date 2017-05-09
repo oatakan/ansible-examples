@@ -2,13 +2,13 @@
 ## This playbook deploys the whole application stack in this site.  
 
 # Apply common configuration to all hosts
-- hosts: "{{ var_all | default('all') }}"
+- hosts: "{{ var_all_pattern | default('all') }}"
   
   roles:
   - common
 
 # Configure and deploy database servers.
-- hosts: "{{ var_dbservers | default('dbservers') }}"
+- hosts: "{{ var_dbservers_pattern | default('dbservers') }}"
   vars_files:
     - group_vars/dbservers
   roles:
@@ -20,7 +20,7 @@
 # Configure and deploy the web servers. Note that we include two roles here,
 # the 'base-apache' role which simply sets up Apache, and 'web' which includes
 # our example web application.
-- hosts: "{{ var_webservers | default('webservers') }}"
+- hosts: "{{ var_webservers_pattern | default('webservers') }}"
   vars_files:
     - group_vars/webservers
   roles:
@@ -31,7 +31,7 @@
   - web
 
 # Configure and deploy the load balancer(s).
-- hosts: "{{ var_lbservers | default('lbservers') }}"
+- hosts: "{{ var_lbservers_pattern | default('lbservers') }}"
   vars_files:
     - group_vars/lbservers
   roles:
@@ -41,7 +41,7 @@
   - lb
 
 # Configure and deploy the Nagios monitoring node(s).
-- hosts: "{{ var_monitoring | default('monitoring') }}"
+- hosts: "{{ var_monitoring_pattern | default('monitoring') }}"
   
   roles:
   - base-apache
