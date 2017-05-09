@@ -45,7 +45,10 @@
 
 # Configure and deploy the Nagios monitoring node(s).
 - hosts: "{{ var_monitoring_pattern | default('monitoring') }}"
-  
+  vars_files:
+    - group_vars/lbservers
+    - group_vars/dbservers
+    - group_vars/webservers
   roles:
   - base-apache
   - nagios

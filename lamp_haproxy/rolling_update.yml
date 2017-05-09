@@ -12,6 +12,10 @@
   tasks: []
 
 - hosts: "{{ var_webservers_pattern | default('webservers') }}"
+  vars_files:
+    - group_vars/lbservers
+    - group_vars/dbservers
+    - group_vars/webservers
   serial: 1
 
   # These are the tasks to run before applying updates:
