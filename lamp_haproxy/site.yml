@@ -10,7 +10,7 @@
 # Configure and deploy database servers.
 - hosts: "{{ var_dbservers | default('dbservers') }}"
   vars_files:
-    - group_vars/dbservers.yml
+    - group_vars/dbservers
   roles:
   - db
 
@@ -22,7 +22,7 @@
 # our example web application.
 - hosts: "{{ var_webservers | default('webservers') }}"
   vars_files:
-    - group_vars/webservers.yml
+    - group_vars/webservers
   roles:
   - base-apache
   - web
@@ -33,7 +33,7 @@
 # Configure and deploy the load balancer(s).
 - hosts: "{{ var_lbservers | default('lbservers') }}"
   vars_files:
-    - group_vars/lbservers.yml
+    - group_vars/lbservers
   roles:
   - haproxy
   
